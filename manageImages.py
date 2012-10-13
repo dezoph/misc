@@ -16,7 +16,6 @@ def changeFileCreationTime(fname, newtime):
     win32file.SetFileTime(winfile, wintime, None, None)
 
     winfile.close()
-    print 'here'
 
 def touchWin(prefix, dirName = '.'):
     for filename in os.listdir(dirName):
@@ -55,8 +54,11 @@ def scrap():
         time.sleep(1)
 
 def main():
-    # rename('lakeGeorgeOct2012', 'IMGP')
-    touchWin('lakeGeorgeOct2012', '.')
+    cameraPrefix = 'IMGP'
+    filePrefix = 'abc'
+    dirPath = '.'
+    # rename(filePrefix, cameraPrefix)
+    touchWin(filePrefix, dirPath)
     
 
 if __name__ == "__main__":    
