@@ -1,0 +1,8 @@
+Collection of useful python scripts for "misc" functions
+
+---------------
+manageImages.py
+---------------
+
+First one is a simple script to rename or change the time stamp, in batch mode, of a bunch of image files imported from a camera and stored in a directory. 
+
