@@ -1,4 +1,3 @@
-
 import os
 import time
 import sys
@@ -17,48 +16,39 @@ def changeFileCreationTime(fname, newtime):
 
     winfile.close()
 
-def touchWin(prefix, dirName = '.'):
-    for filename in os.listdir(dirName):
-        if filename.startswith(prefix):
-            changeFileCreationTime(filename, time.time())
+def changeTimeStamp(prefix, dirPath = '.'):
+    """
+    change the time stamp of files in batch
+    """
 
-def touch(fname, times=None):
+    for filename in os.listdir(dirPath):
+        if filename.startswith(prefix):
+            touchFile(filename);
+            # changeFileCreationTime(filename, time.time())
+
+def touchFile(fname, times=None):
     with file(fname, 'a'):
         os.utime(fname, times)
 
-def rename(newPrefix, oldPrefix = 'IMGP'):
+def rename(newPrefix, oldPrefix = 'IMGP', dirPath = '.'):
+    """
+    rename the files in a dir with names starting with 
+    input prefix
+    """
+
     i = 1
-    for filename in os.listdir("."):
+    for filename in os.listdir(dirPath):
         if filename.startswith("IMGP"):
             os.rename(filename, newPrefix + '-' + str(i) + '.jpg')
             i = i + 1
-
-def scrap():
-    path="full dir path"
-
-    fileList = []
-    dirList=os.listdir(path)
-
-    for fname in dirList:
-        if "IMG" in fname:
-            fileList.append(fname);
-
-    print sorted(fileList)
-    sys.stdout.flush()
-
-    # retouch the file in sequential order
-    for i, f in enumerate(sorted(fileList)):
-        touch(f);
-        print '%d' % (i+1)
-        sys.stdout.flush()
-        time.sleep(1)
 
 def main():
     cameraPrefix = 'IMGP'
     filePrefix = 'abc'
     dirPath = '.'
+    osType = 'unix'
     # rename(filePrefix, cameraPrefix)
-    touchWin(filePrefix, dirPath)
+    changeTimeStamp(filePrefix, dirPath)
     
 
 if __name__ == "__main__":    
